@@ -5,7 +5,7 @@ import {
   createClient,
 } from "wagmi";
 import { publicProvider } from 'wagmi/providers/public'
-import { polygonMumbai } from 'wagmi/chains'
+import { polygon } from 'wagmi/chains'
 import { connectorsForWallets, RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit'
 import { 
   googleWallet,
@@ -16,10 +16,11 @@ import {
   twitterWallet,
 } from '@zerodevapp/wagmi/rainbowkit'
 
-const defaultProjectId = process.env.REACT_APP_ZERODEV_PROJECT_ID || 'b5486fa4-e3d9-450b-8428-646e757c10f6'
+// Polygon without Sponsoring
+const defaultProjectId = '456c9ac7-4d25-4416-9653-81056b521978'
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [polygonMumbai],
+  [polygon],
   [publicProvider()],
 )
 
@@ -27,12 +28,12 @@ const connectors = connectorsForWallets([
   {
     groupName: 'Social',
       wallets: [
-        googleWallet({options: { projectId: defaultProjectId}}),
-        facebookWallet({options: { projectId: defaultProjectId}}),
-        githubWallet({options: { projectId: defaultProjectId }}),
-        discordWallet({options: { projectId: defaultProjectId }}),
-        twitchWallet({options: { projectId: defaultProjectId }}),
-        twitterWallet({options: { projectId: defaultProjectId }}),
+        googleWallet({options: { projectId: defaultProjectId, gasToken: 'USDC'}}),
+        facebookWallet({options: { projectId: defaultProjectId, gasToken: 'USDC'}}),
+        githubWallet({options: { projectId: defaultProjectId, gasToken: 'USDC' }}),
+        discordWallet({options: { projectId: defaultProjectId, gasToken: 'USDC' }}),
+        twitchWallet({options: { projectId: defaultProjectId, gasToken: 'USDC' }}),
+        twitterWallet({options: { projectId: defaultProjectId, gasToken: 'USDC' }}),
     ],
   },
 ]);
